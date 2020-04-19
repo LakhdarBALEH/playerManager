@@ -16,6 +16,13 @@ node('master') {
     node('vm-amazon') {
         stage('deploy') {
             unstash 'livrables'
+
+            try{
+                sh "sudo docker stop back"
+                sh "sudo docker rm back"
+            }catch(e){
+
+            }
             sh "cd back && sudo docker build -t back ."
             sh "sudo docker run --name back -p 10000:8090 -d back"
 

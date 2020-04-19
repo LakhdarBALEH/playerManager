@@ -23,31 +23,9 @@ public class Controller {
                 .nom("chikhi")
                 .prenom("massine").build();
 
-        Player player2 = Player.builder()
-                .id(2L)
-                .nom("yacine")
-                .prenom("nabil").build();
 
-        Player player3 = Player.builder()
-                .id(3L)
-                .nom("kessal")
-                .prenom("la tchatche").build();
-
-        Player player4 = Player.builder()
-                .id(4L)
-                .nom("aris")
-                .prenom("mécano").build();
-
-        Player player5 = Player.builder()
-                .id(4L)
-                .nom("aris 2")
-                .prenom("mécano").build();
 
         players.add(player1);
-        players.add(player2);
-        players.add(player3);
-        players.add(player4);
-        players.add(player5);
 
         return players;
 
