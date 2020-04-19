@@ -1,15 +1,24 @@
-node{
+node('master') {
     stage('checkout'){
         checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[credentialsId: 'dc1dc8fe-99cc-4355-b161-a28ad28c653c', url: 'https://github.com/LakhdarBALEH/playerManager.git']]])
     }
 
     stage('build'){
-        println 'je build'
+
+        sh 'cd back && chmod +x ./mvnw'
+        sh 'cd back && ./mvnw package'
+        stash includes: """back/target/*.jar,
+                        back/Dockerfile,
+                        """, name: 'livrables'
 
     }
 
-    stage('deploy'){
-        println 'je deploie'
+    node('vm-amazon') {
+        stage('deploy') {
+            unstash 'livrables'
+            sh "cd back && sudo docker build -t back ."
+            sh "sudo docker run --name back -p 10000:8090 -d back"
 
+        }
     }
 }
