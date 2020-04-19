@@ -1,0 +1,15 @@
+node{
+    stage('checkout'){
+        checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[credentialsId: 'dc1dc8fe-99cc-4355-b161-a28ad28c653c', url: 'https://github.com/LakhdarBALEH/playerManager.git']]])
+    }
+
+    stage('build'){
+        println 'je build'
+
+    }
+
+    stage('deploy'){
+        println 'je deploie'
+
+    }
+}
