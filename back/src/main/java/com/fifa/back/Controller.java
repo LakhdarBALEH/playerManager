@@ -38,10 +38,16 @@ public class Controller {
                 .nom("aris")
                 .prenom("mécano").build();
 
+        Player player5 = Player.builder()
+                .id(4L)
+                .nom("aris 2")
+                .prenom("mécano").build();
+
         players.add(player1);
         players.add(player2);
         players.add(player3);
         players.add(player4);
+        players.add(player5);
 
         return players;
 
